@@ -1,7 +1,7 @@
 package com.meesho.notification.services.sms;
 
-import com.meesho.notification.entities.sms.SMSRequest;
-import com.meesho.notification.requests.sms.SMSRequestBody;
+import com.meesho.notification.models.entities.sms.SMSRequest;
+import com.meesho.notification.models.requests.sms.SMSRequestBody;
 import com.meesho.notification.repositories.sms.SMSRequestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

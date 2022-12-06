@@ -1,7 +1,7 @@
 package com.meesho.notification.controllers.blacklist;
 
 
-import com.meesho.notification.requests.blacklist.BlacklistRequestBody;
+import com.meesho.notification.models.requests.blacklist.BlacklistRequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

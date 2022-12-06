@@ -1,4 +1,4 @@
-package com.meesho.notification.entities.sms;
+package com.meesho.notification.models.entities.sms;
 import lombok.*;
 
 import javax.persistence.*;

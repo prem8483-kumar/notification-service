@@ -1,5 +1,5 @@
 package com.meesho.notification.services.blacklist;
-import com.meesho.notification.requests.blacklist.BlacklistRequestBody;
+import com.meesho.notification.models.requests.blacklist.BlacklistRequestBody;
 
 public interface BlacklistService {
 

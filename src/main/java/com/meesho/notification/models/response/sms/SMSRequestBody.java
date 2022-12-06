@@ -1,4 +1,4 @@
-package com.meesho.notification.requests.sms;
+package com.meesho.notification.models.response.sms;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
