@@ -1,4 +1,4 @@
-package com.meesho.notification.models.blacklist;
+package com.meesho.notification.requests.blacklist;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BlacklistRequest {
+public class BlacklistRequestBody {
 
     @NonNull
     @JsonProperty("phoneNumbers")

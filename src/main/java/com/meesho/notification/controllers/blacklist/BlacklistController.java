@@ -1,7 +1,7 @@
 package com.meesho.notification.controllers.blacklist;
 
 
-import com.meesho.notification.models.blacklist.BlacklistRequest;
+import com.meesho.notification.requests.blacklist.BlacklistRequestBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 public class BlacklistController {
 
     @PostMapping(path = "/v1/blacklist")
-    public void addNumbersToBlacklist(@RequestBody BlacklistRequest blacklistRequest) {
-        log.info("Add Number to Blacklist Request: " +  blacklistRequest.toString());
+    public void addNumbersToBlacklist(@RequestBody BlacklistRequestBody blacklistRequestBody) {
+        log.info("Add Number to Blacklist Request: " +  blacklistRequestBody.toString());
     }
 
     @GetMapping(path = "/v1/blacklist")
@@ -21,8 +21,8 @@ public class BlacklistController {
     }
 
     @DeleteMapping(path = "/v1/blacklist")
-    public void removeNumbersFromBlacklist(@RequestBody BlacklistRequest blacklistRequest) {
-        log.info("Remove Number from Blacklist Request: " + blacklistRequest.toString());
+    public void removeNumbersFromBlacklist(@RequestBody BlacklistRequestBody blacklistRequestBody) {
+        log.info("Remove Number from Blacklist Request: " + blacklistRequestBody.toString());
     }
 
 }

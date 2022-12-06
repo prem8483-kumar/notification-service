@@ -1,4 +1,4 @@
-package com.meesho.notification.models.sms;
+package com.meesho.notification.requests.sms;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SMSRequest {
+public class SMSRequestBody {
 
     @NonNull
     @JsonProperty("phoneNumber")
