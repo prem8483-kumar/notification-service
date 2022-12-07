@@ -8,13 +8,9 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SMSRequestBody {
+public class SMSResponseError {
 
-    @NonNull
-    @JsonProperty("phoneNumber")
-    String phoneNumber;
-
-    @JsonProperty("message")
-    String message;
+    @JsonProperty("error")
+    SMSErrorData error;
 
 }
