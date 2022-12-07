@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name="sms_requests")
+@Builder
 public class SMSRequest {
 
     @Id

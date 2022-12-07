@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class SMSDetailsData {
 
     @JsonProperty("id")

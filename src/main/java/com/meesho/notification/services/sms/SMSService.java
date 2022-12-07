@@ -1,13 +1,12 @@
 package com.meesho.notification.services.sms;
 
-import com.meesho.notification.models.entities.sms.SMSRequest;
 import com.meesho.notification.models.requests.sms.SMSRequestBody;
-
-import java.util.Optional;
+import com.meesho.notification.models.response.sms.SMSDetailsResponse;
+import com.meesho.notification.models.response.sms.SendSMSResponse;
 
 public interface SMSService {
 
-    public SMSRequest sendSMS(SMSRequestBody smsRequestBody);
+    public SendSMSResponse sendSMS(SMSRequestBody smsRequestBody);
 
-    public Optional<SMSRequest> getSMSDetails(Integer requestId);
+    public SMSDetailsResponse getSMSDetails(Integer requestId);
 }
