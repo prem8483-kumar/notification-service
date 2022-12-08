@@ -3,6 +3,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name="sms_requests")
