@@ -7,6 +7,7 @@ import com.meesho.notification.models.response.sms.SMSDetailsResponse;
 import com.meesho.notification.models.response.sms.SendSMSData;
 import com.meesho.notification.models.response.sms.SendSMSResponse;
 import com.meesho.notification.repositories.sms.SMSRequestRepository;
+import com.meesho.notification.utils.kafka.KafkaProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class SMSServiceImpl implements SMSService{
 
     @Autowired
     SMSRequestRepository smsRequestRepository;
+
+    @Autowired
+    KafkaProducer kafkaProducer;
 
     @Override
     public SendSMSResponse sendSMS(SMSRequestBody smsRequestBody) {
@@ -41,6 +45,7 @@ public class SMSServiceImpl implements SMSService{
                 .build();
 
         log.info("Publish request_id to kafka topic -> notification.send_sms");
+        kafkaProducer.sendMessage(String.valueOf(smsRequest.getId()));
         return sendSMSResponse;
     }
 

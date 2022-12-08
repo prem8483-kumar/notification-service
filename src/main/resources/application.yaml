@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://bac-d-supply-qa.meesho.co:3306/notification?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    username: mycroft
+    password: CPRE{3$ZJK5n~Akxy7c
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+  jackson:
+    default-property-inclusion: NON_NULL
+
+  kafka:
+    consumer:
+      bootstrap-servers: b-5.bacsdevqakafka.7sdgii.c5.kafka.ap-southeast-1.amazonaws.com:9092,b-6.bacsdevqakafka.7sdgii.c5.kafka.ap-southeast-1.amazonaws.com:9092,b-4.bacsdevqakafka.7sdgii.c5.kafka.ap-southeast-1.amazonaws.com:9092
+      group-id: notification.send_sms_consumer_group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: b-5.bacsdevqakafka.7sdgii.c5.kafka.ap-southeast-1.amazonaws.com:9092,b-6.bacsdevqakafka.7sdgii.c5.kafka.ap-southeast-1.amazonaws.com:9092,b-4.bacsdevqakafka.7sdgii.c5.kafka.ap-southeast-1.amazonaws.com:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
