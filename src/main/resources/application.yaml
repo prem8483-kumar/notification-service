@@ -1,9 +1,9 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url:
-    username:
-    password:
+    url: ${MYSQL_CONNECT_URI}
+    username: ${MYSQL_CONNECT_USER_NAME}
+    password: ${MYSQL_CONNECT_PASSWORD}
 
   jpa:
     hibernate:
@@ -14,12 +14,12 @@ spring:
 
   kafka:
     consumer:
-      bootstrap-servers:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
       group-id: notification.send_sms_consumer_group_id
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
-      bootstrap-servers:
+      bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer

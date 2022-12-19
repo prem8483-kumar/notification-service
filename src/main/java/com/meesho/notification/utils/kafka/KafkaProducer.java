@@ -1,7 +1,9 @@
 package com.meesho.notification.utils.kafka;
 
+import com.meesho.notification.constants.KafkaConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -9,14 +11,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaProducer {
 
-    private static final String SEND_SMS_TOPIC = "notification.send_sms";
+
 
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
+    @Value(KafkaConstants.SEND_SMS_TOPIC)
+    private String sendSmsTopic;
+
+
     public void sendMessage(String message) {
-        log.info("Published message on topic " + SEND_SMS_TOPIC + ": " + message  );
-        kafkaTemplate.send(SEND_SMS_TOPIC, message);
+        log.info("Published message on topic " + sendSmsTopic + ": " + message  );
+        kafkaTemplate.send(sendSmsTopic, message);
     }
 
 }

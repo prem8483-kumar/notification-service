@@ -1,5 +1,6 @@
 package com.meesho.notification.utils.kafka;
 
+import com.meesho.notification.constants.KafkaConstants;
 import com.meesho.notification.models.entities.sms.SMSRequest;
 import com.meesho.notification.repositories.sms.SMSRequestRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,18 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaConsumer {
 
-    private static final String SEND_SMS_TOPIC = "notification.send_sms";
-    private static final String SEND_SMS_CONSUMER_GROUP_ID = "notification.send_sms_consumer_group_id";
-
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
     @Autowired
     SMSRequestRepository smsRequestRepository;
 
-    @KafkaListener(topics = SEND_SMS_TOPIC, groupId = SEND_SMS_CONSUMER_GROUP_ID)
+    @KafkaListener(topics = KafkaConstants.SEND_SMS_TOPIC, groupId = KafkaConstants.SEND_SMS_CONSUMER_GROUP_ID)
     public void consumeMessage(String message) {
-        log.info("Received message on topic " + SEND_SMS_TOPIC + ": " + message);
+        log.info("Received message on topic " + KafkaConstants.SEND_SMS_TOPIC + ": " + message);
 
         log.info("Get the request details from db");
         SMSRequest smsRequest =  smsRequestRepository.findById(Integer.valueOf(message)).get();
