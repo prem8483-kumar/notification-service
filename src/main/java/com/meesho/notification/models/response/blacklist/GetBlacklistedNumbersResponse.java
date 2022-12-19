@@ -2,8 +2,7 @@ package com.meesho.notification.models.response.blacklist;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Getter
@@ -14,6 +13,6 @@ import java.util.List;
 public class GetBlacklistedNumbersResponse {
 
     @JsonProperty("data")
-    List<String> data;
+    Set<Object> data;
 
 }
