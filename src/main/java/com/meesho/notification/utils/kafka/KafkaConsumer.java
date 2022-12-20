@@ -1,8 +1,10 @@
 package com.meesho.notification.utils.kafka;
 
+import com.meesho.notification.adapters.ElasticSearchSMSDetailsAdapter;
 import com.meesho.notification.constants.KafkaConstants;
 import com.meesho.notification.constants.RedisConstants;
 import com.meesho.notification.models.entities.sms.SMSRequest;
+import com.meesho.notification.repositories.sms.SMSDetailsDocumentRepository;
 import com.meesho.notification.repositories.sms.SMSRequestRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class KafkaConsumer {
     SMSRequestRepository smsRequestRepository;
 
     @Autowired
+    SMSDetailsDocumentRepository smsDetailsDocumentRepository;
+
+    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     @Value(RedisConstants.BLACKLISTED_NUMBERS_KEY)
@@ -41,6 +46,13 @@ public class KafkaConsumer {
         log.info("Check if number is blacklisted via redis");
         if(Objects.requireNonNull(redisTemplate.opsForSet().isMember(blacklistedNumbersKey, smsRequest.getPhoneNumber()))) {
             log.info("Number is blacklisted via redis");
+
+            log.info("Update the status, message_id, failure_details if any in DB");
+            smsRequest.setStatus("FAILURE");
+            smsRequest.setFailureCode("NUMBER_BLOCKED");
+            smsRequest.setFailureComments("Phone Number is blacklisted");
+            smsRequest = smsRequestRepository.save(smsRequest);
+
             return;
         }
 
@@ -51,6 +63,7 @@ public class KafkaConsumer {
         smsRequest = smsRequestRepository.save(smsRequest);
 
         log.info("Index the details in elastic search");
+        smsDetailsDocumentRepository.save(ElasticSearchSMSDetailsAdapter.smsRequestToSMSDetailsDocument(smsRequest));
 
     }
 

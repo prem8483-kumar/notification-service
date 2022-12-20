@@ -2,6 +2,7 @@ package com.meesho.notification.models.entities.sms;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -32,4 +33,11 @@ public class SMSRequest {
 
     @Column(name = "failure_comments")
     String failureComments;
+
+    @Column(name = "created_at")
+    LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    LocalDateTime updatedAt;
+
 }
