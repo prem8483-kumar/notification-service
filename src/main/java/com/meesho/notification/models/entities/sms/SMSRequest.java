@@ -1,6 +1,7 @@
 package com.meesho.notification.models.entities.sms;
 import lombok.*;
 
+import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 

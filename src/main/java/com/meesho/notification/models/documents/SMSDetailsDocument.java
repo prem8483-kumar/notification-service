@@ -4,14 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
-@Document(indexName = "sms_details")
 public class SMSDetailsDocument {
 
     @Id

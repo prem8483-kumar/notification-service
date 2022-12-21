@@ -7,7 +7,6 @@ import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,10 +21,11 @@ public class ElasticSearchConfig {
 
     @Bean
     public ElasticsearchClient getElasticSearchClient() {
-
-        RestClientBuilder builder = RestClient.builder(new HttpHost(elasticSearchProperties.getHost(), elasticSearchProperties.getPort()));
-        RestClient restClient = builder.build();
-        ElasticsearchTransport transport = new RestClientTransport(restClient, new JacksonJsonpMapper());
-        return new ElasticsearchClient(transport);
+        RestClient restClient = RestClient.builder(
+                new HttpHost(elasticSearchProperties.getHost(), elasticSearchProperties.getPort())).build();
+        ElasticsearchTransport transport = new RestClientTransport(
+                restClient, new JacksonJsonpMapper());
+        ElasticsearchClient client = new ElasticsearchClient(transport);
+        return client;
     }
 }
